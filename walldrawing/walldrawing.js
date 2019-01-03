@@ -1,12 +1,15 @@
 const canvasSketch = require('canvas-sketch');
 const { lerp } = require('canvas-sketch-util/math');
 const random = require('canvas-sketch-util/random');
+const palettes = require('nice-color-palettes');
 
 const settings = {
   dimensions: [2048, 2048],
 };
 
 const sketch = () => {
+  const palette = random.pick(palettes);
+
   // Make 6x6 grid
   const createGrid = () => {
     const points = [];
@@ -47,9 +50,6 @@ const sketch = () => {
   const lines = createLines();
   const margin = 300;
 
-  // Form a trapezoid with two parallel sides extending down
-  // Fill the trapezoid with a color, then stroke with the bg color
-  // Find a different set of points and repeat
   // Layer the shapes by average Y position of their two grid points (taller in the back)
 
   // Render
@@ -57,12 +57,20 @@ const sketch = () => {
     context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
 
+    context.strokeStyle = 'white';
+    context.lineWidth = 0.01 * width;
+    context.rect(margin, margin, width - margin * 2, height - margin * 2);
+    context.stroke();
+
     // Draw the lines
     lines.forEach(data => {
       // Destructure the data parameter so we can access the grid object properties
       const { firstPoints, secondPoints } = data;
       const [u1, v1] = firstPoints;
       const [u2, v2] = secondPoints;
+      console.log(firstPoints);
+
+      const yEdge = height - margin;
 
       const x1 = lerp(margin, width - margin, u1);
       const y1 = lerp(margin, height - margin, v1);
@@ -70,12 +78,17 @@ const sketch = () => {
       const x2 = lerp(margin, width - margin, u2);
       const y2 = lerp(margin, height - margin, v2);
 
-      context.strokeStyle = 'black';
+      context.fillStyle = random.pick(palette);
       context.save();
       context.beginPath();
       context.moveTo(x1, y1);
+      context.lineTo(x1, yEdge);
+      context.lineTo(x2, yEdge);
       context.lineTo(x2, y2);
+      context.lineTo(x1, y1);
+      context.lineTo(x1, yEdge);
       context.stroke();
+      context.fill();
       context.restore();
     });
   };

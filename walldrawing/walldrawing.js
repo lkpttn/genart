@@ -59,8 +59,6 @@ const sketch = () => {
 
     context.strokeStyle = 'white';
     context.lineWidth = 0.01 * width;
-    context.rect(margin, margin, width - margin * 2, height - margin * 2);
-    context.stroke();
 
     // Draw the lines
     lines.forEach(data => {
@@ -79,7 +77,6 @@ const sketch = () => {
       const y2 = lerp(margin, height - margin, v2);
 
       context.fillStyle = random.pick(palette);
-      context.save();
       context.beginPath();
       context.moveTo(x1, y1);
       context.lineTo(x1, yEdge);
@@ -87,9 +84,8 @@ const sketch = () => {
       context.lineTo(x2, y2);
       context.lineTo(x1, y1);
       context.lineTo(x1, yEdge);
-      context.stroke();
       context.fill();
-      context.restore();
+      context.stroke();
     });
   };
 };

@@ -1,0 +1,16 @@
+{
+  "name": "webglcube",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webgl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas-sketch": "^0.2.0",
+    "three": "^0.100.0"
+  }
+}

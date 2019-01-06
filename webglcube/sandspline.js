@@ -54,10 +54,10 @@ const sketch = () => {
 
   // Render
   return ({ context, width, height }) => {
-    context.fillStyle = 'white';
+    context.fillStyle = 'black';
     context.fillRect(0, 0, width, height);
 
-    context.strokeStyle = 'rgba(0,0,55,0.1)';
+    context.strokeStyle = 'rgba(255,255,255,0.1)';
     context.lineWidth = (0.01 * width) / 10;
 
     // Take apart the lineGrid to get to each line

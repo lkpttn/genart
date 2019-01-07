@@ -7,6 +7,8 @@ const settings = {
 };
 
 const sketch = () => {
+  // https://inconvergent.net/2017/grains-of-sand/
+  // https://inconvergent.net/2016/spurious-splines/
   // Pick a number of grains, n.
   // Pick a color, and a corresponding transparency, rgba.
   // Pick two points, v and w.
@@ -39,7 +41,7 @@ const sketch = () => {
     context.fillRect(0, 0, width, height);
 
     // Draw many lines, slightly offset
-    for (let x = 0; x < 40; x++) {
+    for (let x = 0; x < 50; x++) {
       // randomize the offset
       const drift = random.range(-20, 20);
       v += drift;

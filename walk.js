@@ -7,12 +7,16 @@ const settings = {
   animate: true,
   dimensions: [512, 512],
   playbackRate: 'throttle',
-  fps: 4,
+  fps: 24,
 };
 
 canvasSketch(() => {
   // https://inconvergent.net/2016/shepherding-random-numbers/#introduction
   // Causing randomized drifts of nodes
+
+  // https://codepen.io/DonKarlssonSan/post/random-walk
+  // Random walker explanation
+  
   const nodes = 17;
   const margin = 100;
   let drift = 0;
@@ -67,7 +71,7 @@ canvasSketch(() => {
     // Get some coordnates at the beginning of the sketch
     // We don't want to set a new position every frame
     const position = {
-      oldPoints: [width / 2, height / 2],
+      oldPoints: generateCoordinates(),
       newPoints: generateCoordinates(),
     };
 

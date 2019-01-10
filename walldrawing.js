@@ -66,7 +66,6 @@ const sketch = () => {
       const { firstPoints, secondPoints } = data;
       const [u1, v1] = firstPoints;
       const [u2, v2] = secondPoints;
-      console.log(firstPoints);
 
       const yEdge = height - margin;
 

@@ -1,5 +1,5 @@
 const canvasSketch = require('canvas-sketch');
-const { lerp } = require('canvas-sketch-util/math');
+const { lerp, clamp } = require('canvas-sketch-util/math');
 const random = require('canvas-sketch-util/random');
 
 const settings = {
@@ -17,17 +17,23 @@ const sketch = () => {
     // Creates #count lines starting at the x value
     for (let i = 0; i < xyPoints; i++) {
       const points = [];
+      let z = 0;
       for (let y = 0; y < xyPoints; y++) {
         // The line should get more sporadic as y increases, tempered by x
         // y increases constantly 0..1
         // x increases by random value between -y/xyPoints and y/xyPoints  y bounded at 0?
         const u =
-          count <= 1
-            ? 0.5
-            : (x + random.range(-1 * (y / xyPoints), y / xyPoints)) /
-              (xyPoints - 1);
+          (x +
+            random.range(
+              //-1 * ((y * (x / 1.8)) / (xyPoints * x)),
+              // y / (xyPoints * x),
+              -1 * (y / (xyPoints * x)),
+              (y * (x / 4)) / (xyPoints * x),
+            )) /
+          (xyPoints - 1);
         const v = count <= 1 ? 0.5 : y / (xyPoints - 1);
 
+        z += 0;
         points.push([u, v]);
       }
 

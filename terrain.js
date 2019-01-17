@@ -4,7 +4,7 @@ const random = require('canvas-sketch-util/random');
 
 const settings = {
   dimensions: [512, 512],
-  animate: true,
+  animate: false,
   duration: 4,
 };
 
@@ -12,26 +12,30 @@ const sketch = () => {
   // Whatever
   const createGrid = () => {
     const points = [];
-    const count = 60;
+    const countX = 60;
+    const countY = 60;
 
     // Nested for loop to create x and y coordinates
-    for (let x = 0; x < count; x++) {
-      for (let y = 0; y < count; y++) {
+    for (let x = 0; x < countX; x++) {
+      for (let y = 0; y < countY; y++) {
         // Working in uv space instead of final pixel coordinates
         // For added flexibility
-        const u = count <= 1 ? 0.5 : x / (count - 1);
-        const v = count <= 1 ? 0.5 : y / (count - 1);
-        const radius = 0.03 + Math.abs(random.noise2D(u, v, 3) * 0.05);
+        const u = countX <= 1 ? 0.5 : x / (countX - 1);
+        const v = countY <= 1 ? 0.5 : y / (countY - 1);
+        const z = 0.03 + Math.abs(random.noise2D(u, v, 2));
         points.push({
-          radius: radius,
-          postion: [u, v],
+          u: u,
+          v: v,
+          z: z,
         });
       }
     }
     return points;
   };
 
-  const grid = createGrid();
+  // Find a plane slice by filtering our grid to only include points who's
+  // z value is within a certain value
+  const grid = createGrid().filter(point => point.z > 0.3 && point.z < 0.35);
   const margin = 50;
 
   // Return
@@ -41,18 +45,18 @@ const sketch = () => {
 
     grid.forEach(data => {
       // Destructure the data parameter so we can access the grid object properties
-      const { postion, radius } = data;
-      const [u, v] = postion;
+      const { u, v, z } = data;
 
       const x = lerp(margin, width - margin, u);
       const y = lerp(margin, height - margin, v);
 
-      const radiusZ =
-        0.03 + Math.abs(random.noise3D(u, v, Math.sin(playhead), 2) * 0.05);
+      // 3D noise time variable stuff
+      // const radiusZ =
+      //   0.03 + Math.abs(random.noise3D(u, v, Math.sin(playhead), 2) * 0.03);
 
-      // fill the grid with circles
+      // Draw a black circle at each point
       context.beginPath();
-      context.arc(x, y, (radiusZ * width) / 8, 0, Math.PI * 2, false);
+      context.arc(x, y, 2, 0, Math.PI * 2, false);
       context.fillStyle = 'black';
       context.fill();
     });

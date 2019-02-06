@@ -3,8 +3,8 @@ var context = canvas.getContext('2d');
 
 var size = window.innerWidth;
 var dpr = 1;
-canvas.width = size * dpr;
-canvas.height = size * dpr;
+canvas.width = 500;
+canvas.height = 500;
 context.scale(dpr, dpr);
 
 context.lineCap = 'square';

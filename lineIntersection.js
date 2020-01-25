@@ -44,7 +44,7 @@ const sketch = () => {
     let line1 = createLine();
     allLines.push(line1);
 
-    while (allLines.length < 40) {
+    while (allLines.length < 10) {
       var newLine = createLine();
       var stopLine;
       var linesIntersect = false;
@@ -64,20 +64,19 @@ const sketch = () => {
 
         if (intersection !== false) {
           linesIntersect = true;
-          // stopLine = {
-          //   x1: newLine.x1,
-          //   y1: newLine.y2,
-          //   x2: intersection.x,
-          //   y2: intersection.y,
-          // };
+          stopLine = {
+            x1: newLine.x1,
+            y1: newLine.y2,
+            x2: intersection.x,
+            y2: intersection.y,
+          };
         }
       }
       if (linesIntersect == false) {
         allLines.push(newLine);
+      } else if (linesIntersect == true) {
+        allLines.push(stopLine);
       }
-      // } else if (linesIntersect == true) {
-      //   allLines.push(stopLine);
-      // }
     }
 
     // Draw the lines

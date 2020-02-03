@@ -32,7 +32,7 @@ function makeLines() {
   lines.splice(0, lines.length);
 
   for (let i = 0; i < count; i++) {
-    lines.push(new Line(0, i * 20, 10, 40, colors[i % colors.length]));
+    lines.push(new Line(0, i * 20, 10, 10, colors[i % colors.length]));
   }
 }
 

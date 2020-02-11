@@ -44,7 +44,7 @@ const sketch = () => {
     let line1 = createLine();
     allLines.push(line1);
 
-    while (allLines.length < 10) {
+    while (allLines.length < 40) {
       var newLine = createLine();
       var stopLine;
       var linesIntersect = false;

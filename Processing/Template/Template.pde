@@ -15,4 +15,5 @@ void mousePressed() {
 
 void keyPressed() {
   if (key == 's')saveFrame("####.png");
+  println("Saving screenshot");
 }

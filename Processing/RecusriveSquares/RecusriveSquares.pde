@@ -1,9 +1,9 @@
 int count = 6;
 // int[] colors = {#d2c59b, #fcf8e8, #d4cfbe, #B5B7B7, #edeadf};
-int[] colors = {#f2e4e8, #D9B391, #A68877, #F2CAB3, #D99982};
+int[] colors = {#444444, #111111, #eeeeee, #c7c7c7, #828282};
 
 void setup() {
-  size(1000, 1000);
+  size(700, 700);
   noLoop();
   stroke(getCol());
   fill(getCol());
@@ -12,6 +12,7 @@ void setup() {
 void draw() {
   background(getCol());
   recur(10, 10, width - 20, count);
+  drawTitle("THEME", "RECURSION");
 }
 
 void recur(float x, float y, float size, int n) {

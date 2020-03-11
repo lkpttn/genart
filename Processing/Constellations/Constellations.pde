@@ -62,6 +62,7 @@ void setup() {
 
 void draw() {
   background(32, 38, 57);
+  pushMatrix();
   translate(width/2, height/2);
 
   // Starchart bg
@@ -119,6 +120,9 @@ void draw() {
   fill(32, 38, 57);
   stroke(60, 231, 240, 40); // Light blue
   ellipse(0, 0, 198, 198);
+  
+  popMatrix();
+  drawOverlay("Constellations", "0017");
 }
 
 class Constellation {

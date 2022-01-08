@@ -6,7 +6,7 @@ void setup() {
   noLoop();
   strokeWeight(4);
   strokeCap(SQUARE);
-  pixelDensity(2);
+  // pixelDensity(2);
 }
 
 void draw() {

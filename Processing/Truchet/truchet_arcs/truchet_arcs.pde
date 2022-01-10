@@ -1,4 +1,4 @@
-int count = 20;
+int count = 30;
 int margin = 50;
 float u, v = 0.00;
 int tileSize;
@@ -10,14 +10,17 @@ void setup() {
   noLoop();
   pixelDensity(2);
   strokeWeight(2);
-  strokeCap(PROJECT);
+  strokeCap(SQUARE);
+  strokeJoin(BEVEL);
 
   tileSize = (width - margin - margin) / count;
+  
+  fill(0);
 }
 
 void draw() {
   background(255);
-  noFill();
+  
 
   for (int x = 0; x < count; x++) {
     for (int y = 0; y < count; y++) {
@@ -34,17 +37,16 @@ void draw() {
 void drawTile(float u, float v, int size) {
   float x = lerp(margin, width - margin, u);
   float y = lerp(margin, width - margin, v);
-  
-  stroke(randomColor(palette));
+
+  // stroke(randomColor(palette));
+  stroke(0);
 
   if (int(random(2)) == 0) {
-    // line(x, y + size/2, x + size/2, y + size);
-    // line(x + size/2, y, x + size, y + size/2);
-    arc(x + size, y, size, size, PI / 2, PI);
-    arc(x, y + size, size, size, (3 * PI) / 2, 2 * PI);
+    triangle(x, y, x + size/2, y, x, y + size/2);
+    triangle(x + size/2, y + size, x + size, y + size, x + size, y + size/2);
   } else {
-    line(x + size/2, y, x, y +size/2);
-    line(x + size/2, y + size, x + size, y + size/2);
+    triangle(x + size/2, y, x + size, y, x + size, y + size/2);
+    triangle(x, y + size/2, x + size/2, y + size, x, y + size);
   }
 }
 
@@ -54,7 +56,7 @@ color randomColor(color[] palette) {
 
 void keyPressed() {
   if (key == 's' || key == 'S') {
-    save("arcs.png");
+    saveFrame("arcs-######.png");
     println("Saving image");
   }
   if (key == ENTER) {

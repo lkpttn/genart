@@ -6,6 +6,8 @@ void setup() {
   noLoop();
   stroke(0);
   background(255);
+  
+  fill(50);
 }
 
 void draw() {
@@ -22,11 +24,24 @@ void draw() {
   // Bottom right
   // arc(x + size, y + size, size, size, PI, (3 * PI) / 2);
   
+  
+  // Triangle - top left
+  triangle(x, y, x + size/2, y, x, y + size/2);
+  
+  // Triangle - top right
+  triangle(x + size/2, y, x + size, y, x + size, y + size/2);
+  
+  // Triangle - bottom left
+  triangle(x, y + size/2, x + size/2, y + size, x, y + size);
+  
+  // Triangle - bottom right
+  triangle(x + size/2, y + size, x + size, y + size, x + size , y + size/2);
+  
   // Slight lines
-  line(0, size/2, size/2, size);
-  line(size/2, 0, size, size/2);
+  // line(0, size/2, size/2, size);
+  // line(size/2, 0, size, size/2);
   
   // Alt slight lines
-  line(size/2, 0, 0, size/2);
-  line(size/2, size, size, size/2);
+  // line(size/2, 0, 0, size/2);
+  // line(size/2, size, size, size/2);
 }

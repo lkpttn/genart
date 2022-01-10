@@ -1,26 +1,27 @@
-int count = 30;
-int margin = 50;
+int count = 20;
+int margin = 100;
 float u, v = 0.00;
 int tileSize;
 color[] palette = { #fbbd00, #1267d3, #118135, #f72520};
 
 
 void setup() {
-  size(700, 700);
+  size(1000, 1000);
   noLoop();
   pixelDensity(2);
   strokeWeight(2);
-  strokeCap(SQUARE);
+  strokeCap(PROJECT);
   strokeJoin(BEVEL);
 
   tileSize = (width - margin - margin) / count;
-  
+
   fill(0);
+  noStroke();
 }
 
 void draw() {
   background(255);
-  
+
 
   for (int x = 0; x < count; x++) {
     for (int y = 0; y < count; y++) {
@@ -39,13 +40,13 @@ void drawTile(float u, float v, int size) {
   float y = lerp(margin, width - margin, v);
 
   // stroke(randomColor(palette));
-  stroke(0);
+  // stroke(0);
 
   if (int(random(2)) == 0) {
-    triangle(x, y, x + size/2, y, x, y + size/2);
-    triangle(x + size/2, y + size, x + size, y + size, x + size, y + size/2);
+    arc(x, x, size, size, 0, HALF_PI);
+    triangle(x + size/2, y, x + size, y, x + size, y + size/2);   
   } else {
-    triangle(x + size/2, y, x + size, y, x + size, y + size/2);
+    arc(x + size, y + size, size, size, PI, (3 * PI) / 2);
     triangle(x, y + size/2, x + size/2, y + size, x, y + size);
   }
 }

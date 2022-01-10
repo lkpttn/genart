@@ -38,10 +38,10 @@ void draw() {
   triangle(x + size/2, y + size, x + size, y + size, x + size , y + size/2);
   
   // Slight lines
-  // line(0, size/2, size/2, size);
-  // line(size/2, 0, size, size/2);
+  line(x, y + size/2, x + size/2, y + size);
+  line(x + size/2, y, x + size, y + size/2);
   
   // Alt slight lines
-  // line(size/2, 0, 0, size/2);
-  // line(size/2, size, size, size/2);
+  line(x + size/2, y, x, y + size/2);
+  line(x + size/2, y + size, x + size, y + size/2);
 }
